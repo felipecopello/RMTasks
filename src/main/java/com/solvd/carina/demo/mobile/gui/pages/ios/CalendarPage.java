@@ -29,6 +29,12 @@ public class CalendarPage extends AbstractPage {
     @FindBy(xpath = "//XCUIElementTypeStaticText[@name='Alert']")
     private ExtendedWebElement alarmButton;
 
+    @FindBy(xpath = "//XCUIElementTypeButton[@name='Edit']")
+    private ExtendedWebElement editEventButton;
+
+    @FindBy(xpath = "//XCUIElementTypeSwitch[@name='All-day']")
+    private ExtendedWebElement allDaySwitch;
+
     public void addEvent(String title){
         addButton.click();
         titleInput.type(title);
@@ -73,6 +79,14 @@ public class CalendarPage extends AbstractPage {
         ExtendedWebElement alarmOption = searchElementByName(alertOption);
         alarmOption.click();
         Assert.assertTrue(alarmOption.isElementPresent(5),"Element is not present after 5 seconds");
+    }
+
+    public void setAllDayEvent(String title){
+        ExtendedWebElement event = searchElementByName(title);
+        event.click();
+        editEventButton.click();
+        allDaySwitch.click();
+        Assert.assertEquals(allDaySwitch.getAttribute("value"), "1", "All day switch is not activated");
     }
 
 }
