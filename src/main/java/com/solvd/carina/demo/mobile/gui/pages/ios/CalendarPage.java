@@ -26,6 +26,9 @@ public class CalendarPage extends AbstractPage {
     @FindBy(xpath ="//XCUIElementTypeButton[@name='Delete Event']")
     private ExtendedWebElement deleteEventButton;
 
+    @FindBy(xpath = "//XCUIElementTypeStaticText[@name='Alert']")
+    private ExtendedWebElement alarmButton;
+
     public void addEvent(String title){
         addButton.click();
         titleInput.type(title);
@@ -33,19 +36,16 @@ public class CalendarPage extends AbstractPage {
     }
 
     public void assertEventAdded(String title){
-        By dynamicLocator = By.xpath(String.format("//*[@name[contains(., '%s')]]", title));
-        ExtendedWebElement event = findExtendedWebElement(dynamicLocator);
+        ExtendedWebElement event = searchElementByName(title);
         Assert.assertTrue(event.isElementPresent(),"new event is not displayed");
     }
 
     public void deleteEvent(String title){
-        By dynamicLocator = By.xpath(String.format("//*[@name[contains(., '%s')]]", title));
-        WebElement event = null;
-        event = driver.findElement(dynamicLocator);
-        WebElement eventButton = event;
+        ExtendedWebElement event = searchElementByName(title);
+
         if (event != null) {
             waitUntil(driver -> {
-                return eventButton.isDisplayed();
+                return event.isElementPresent();
             },10);
             event.click();
             deleteEventButton.click();
@@ -59,6 +59,20 @@ public class CalendarPage extends AbstractPage {
         By dynamicLocator = By.xpath(String.format("//*[@name[contains(., '%s')]]", title));
         ExtendedWebElement event = findExtendedWebElement(dynamicLocator);
         Assert.assertNull(event,"Deleted event is not present");
+    }
+
+    public ExtendedWebElement searchElementByName(String title){
+        By dynamicLocator = By.xpath(String.format("//*[@name[contains(., '%s')]]", title));
+        return findExtendedWebElement(dynamicLocator);
+    }
+
+    public void addAlarmToEvent(String title, String alertOption){
+        ExtendedWebElement event = searchElementByName(title);
+        event.click();
+        alarmButton.click();
+        ExtendedWebElement alarmOption = searchElementByName(alertOption);
+        alarmOption.click();
+        Assert.assertTrue(alarmOption.isElementPresent(5),"Element is not present after 5 seconds");
     }
 
 }

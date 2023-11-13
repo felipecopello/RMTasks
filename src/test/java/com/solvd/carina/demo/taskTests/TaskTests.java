@@ -32,4 +32,11 @@ public class TaskTests implements IAbstractTest, IMobileUtils {
         calendarPage.deleteEvent("Testing class");
         calendarPage.assertEventNotPresent("Testing class");
     }
+
+    @Test
+    public void addAlarmToEventTest(){
+        HomePage homePage = new HomePage(getDriver());
+        CalendarPage calendarPage = homePage.openCalendar();
+        calendarPage.addAlarmToEvent("Testing class","15 minutes before");
+    }
 }
