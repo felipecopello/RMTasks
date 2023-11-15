@@ -18,6 +18,9 @@ public class HomePage extends AbstractPage {
     @FindBy(xpath = "//XCUIElementTypeIcon[@name='Calendar']")
     private ExtendedWebElement calendarElement;
 
+    @FindBy(xpath = "//XCUIElementTypeIcon[@name='SwagLabsMobileApp']")
+    private ExtendedWebElement swagElement;
+
     public FilesPage openFiles(){
         filesElement.click();
         return new FilesPage(driver);
@@ -26,5 +29,10 @@ public class HomePage extends AbstractPage {
     public CalendarPage openCalendar(){
         calendarElement.click();
         return new CalendarPage(driver);
+    }
+
+    public LoginSwagPage openSwag(){
+        swagElement.click();
+        return new LoginSwagPage(driver);
     }
 }
