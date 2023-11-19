@@ -5,6 +5,7 @@ import com.solvd.carina.demo.mobile.gui.pages.common.MenuPageBase;
 import com.solvd.carina.demo.mobile.gui.pages.common.WelcomePageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import java.util.Random;
@@ -12,13 +13,13 @@ import java.util.Random;
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = WelcomePageBase.class)
 public class WelcomeIOSPage extends WelcomePageBase {
 
-    @FindBy(xpath = "//XCUIElementTypeOther[@name='test-Cart']")
+    @ExtendedFindBy(iosPredicate = "name='test-Cart'")
     private ExtendedWebElement cartButton;
 
-    @FindBy(xpath = "//XCUIElementTypeStaticText[@name='1']")
+    @ExtendedFindBy(iosPredicate = "name='1'")
     private ExtendedWebElement oneItemTag;
 
-    @FindBy(xpath = "//XCUIElementTypeOther[@name='test-Menu']")
+    @ExtendedFindBy(iosPredicate = "name='test-Menu'")
     private ExtendedWebElement menuButton;
 
     @FindBy(xpath = "//XCUIElementTypeOther[@name='test-ADD TO CART'])[%d]")
