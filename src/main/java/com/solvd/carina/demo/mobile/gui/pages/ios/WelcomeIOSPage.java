@@ -1,11 +1,15 @@
 package com.solvd.carina.demo.mobile.gui.pages.ios;
 
+import com.solvd.carina.demo.mobile.gui.pages.common.CartPageBase;
+import com.solvd.carina.demo.mobile.gui.pages.common.MenuPageBase;
 import com.solvd.carina.demo.mobile.gui.pages.common.WelcomePageBase;
+import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import java.util.Random;
 
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = WelcomePageBase.class)
 public class WelcomeIOSPage extends WelcomePageBase {
 
     @FindBy(xpath = "//XCUIElementTypeOther[@name='test-Cart']")
@@ -24,20 +28,23 @@ public class WelcomeIOSPage extends WelcomePageBase {
         super(driver);
     }
 
-    public ExtendedWebElement getOneItemTag() {
-        return oneItemTag;
+    @Override
+    public boolean isOneItemTagPresent() {
+        return oneItemTag.isElementPresent();
     }
 
-    public CartIOSPage addRandomItemToCart(){
+    @Override
+    public CartPageBase addRandomItemToCart(){
         Random random = new Random();
         int randomNumber = random.nextInt(5) + 1;
         addToCartButton.format(randomNumber).click();
-        return new CartIOSPage(driver);
+        return initPage(getDriver(), CartPageBase.class);
     }
 
-    public MenuIOSPage openMenu(){
+    @Override
+    public MenuPageBase openMenu(){
         menuButton.click();
-        return new MenuIOSPage(driver);
+        return initPage(getDriver(), MenuPageBase.class);
     }
 
 }

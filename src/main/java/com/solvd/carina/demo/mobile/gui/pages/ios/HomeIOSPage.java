@@ -1,10 +1,14 @@
 package com.solvd.carina.demo.mobile.gui.pages.ios;
 
+import com.solvd.carina.demo.mobile.gui.pages.common.CartPageBase;
 import com.solvd.carina.demo.mobile.gui.pages.common.HomePageBase;
+import com.solvd.carina.demo.mobile.gui.pages.common.LoginSwagPageBase;
+import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = HomePageBase.class)
 public class HomeIOSPage extends HomePageBase {
 
     @FindBy(xpath = "//XCUIElementTypeIcon[@name='SwagLabsMobileApp']")
@@ -15,8 +19,8 @@ public class HomeIOSPage extends HomePageBase {
     }
 
     @Override
-    public LoginSwagIOSPage openSwag(){
+    public LoginSwagPageBase openSwag(){
         swagElement.click();
-        return new LoginSwagIOSPage(driver);
+        return initPage(getDriver(), LoginSwagPageBase.class);
     }
 }

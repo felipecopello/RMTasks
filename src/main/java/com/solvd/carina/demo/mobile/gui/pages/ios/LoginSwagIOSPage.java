@@ -1,11 +1,15 @@
 package com.solvd.carina.demo.mobile.gui.pages.ios;
 
 import com.github.javafaker.Faker;
+import com.solvd.carina.demo.mobile.gui.pages.common.HomePageBase;
 import com.solvd.carina.demo.mobile.gui.pages.common.LoginSwagPageBase;
+import com.solvd.carina.demo.mobile.gui.pages.common.WelcomePageBase;
+import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = LoginSwagPageBase.class)
 public class LoginSwagIOSPage extends LoginSwagPageBase {
 
     @FindBy(xpath = "//XCUIElementTypeTextField[@name='test-Username']")
@@ -23,28 +27,31 @@ public class LoginSwagIOSPage extends LoginSwagPageBase {
     @FindBy(xpath = "//XCUIElementTypeStaticText[@name='Username and password do not match any user in this service.']")
     private ExtendedWebElement loginErrorPrompt;
 
-    public ExtendedWebElement getLoginErrorPrompt() {
-        return loginErrorPrompt;
-    }
-
-    public ExtendedWebElement getPassWordInput() {
-        return passWordInput;
-    }
-
     public LoginSwagIOSPage(WebDriver driver) {
         super(driver);
     }
 
-    public ExtendedWebElement getCartButton() {
-        return cartButton;
+    @Override
+    public boolean isLoginErrorPromptPresent() {
+        return loginErrorPrompt.isElementPresent();
     }
 
     @Override
-    public WelcomeIOSPage login(){
+    public boolean isPassWordInputPresent() {
+        return passWordInput.isElementPresent();
+    }
+
+    @Override
+    public boolean isCartButtonPresent() {
+        return cartButton.isElementPresent();
+    }
+
+    @Override
+    public WelcomePageBase login(){
         userNameInput.type("standard_user");
         passWordInput.type("secret_sauce");
         loginButton.click();
-        return new WelcomeIOSPage(driver);
+        return initPage(getDriver(), WelcomePageBase.class);
     }
 
     @Override
