@@ -5,10 +5,10 @@ import com.solvd.carina.demo.mobile.gui.pages.common.MenuPageBase;
 import com.solvd.carina.demo.mobile.gui.pages.common.WelcomePageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import java.util.Random;
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = WelcomePageBase.class)
 public class WelcomeIOSPage extends WelcomePageBase {
@@ -22,11 +22,13 @@ public class WelcomeIOSPage extends WelcomePageBase {
     @ExtendedFindBy(iosPredicate = "name='test-Menu'")
     private ExtendedWebElement menuButton;
 
-    @FindBy(xpath = "//XCUIElementTypeOther[@name='test-ADD TO CART'])[%d]")
+    @FindBy(xpath = "//XCUIElementTypeOther[@name='test-ADD TO CART'][%d])")
     private ExtendedWebElement addToCartButton;
 
     public WelcomeIOSPage(WebDriver driver) {
         super(driver);
+        setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
+        setUiLoadedMarker(addToCartButton);
     }
 
     @Override
@@ -35,15 +37,13 @@ public class WelcomeIOSPage extends WelcomePageBase {
     }
 
     @Override
-    public CartPageBase addRandomItemToCart(){
-        Random random = new Random();
-        int randomNumber = random.nextInt(5) + 1;
-        addToCartButton.format(randomNumber).click();
+    public CartPageBase clickAddToCartButton(int index) {
+        addToCartButton.format(index).click();
         return initPage(getDriver(), CartPageBase.class);
     }
 
     @Override
-    public MenuPageBase openMenu(){
+    public MenuPageBase clickMenuButton() {
         menuButton.click();
         return initPage(getDriver(), MenuPageBase.class);
     }

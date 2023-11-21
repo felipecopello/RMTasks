@@ -8,7 +8,7 @@ public abstract class MenuPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract void logout();
+    public abstract void clickLogoutButton();
 
     public abstract boolean isLogoutButtonPresent();
 }
