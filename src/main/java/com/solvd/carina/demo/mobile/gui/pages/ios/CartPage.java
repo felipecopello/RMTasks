@@ -8,23 +8,20 @@ import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.WebDriver;
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = CartPageBase.class)
-public class CartIOSPage extends CartPageBase {
+public class CartPage extends CartPageBase {
 
     @ExtendedFindBy(iosPredicate = "name='REMOVE'")
     private ExtendedWebElement removeButton;
 
-    @ExtendedFindBy(iosPredicate = "name='1'")
-    private ExtendedWebElement oneItemTag;
-
-    public CartIOSPage(WebDriver driver) {
+    public CartPage(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
         setUiLoadedMarker(removeButton);
     }
 
     @Override
-    public boolean isOneItemTagPresent() {
-        return oneItemTag.isElementPresent();
+    public boolean isRemoveItemFromCartPresent() {
+        return removeButton.isElementPresent();
     }
 
     @Override

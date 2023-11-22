@@ -8,12 +8,12 @@ import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.WebDriver;
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = MenuPageBase.class)
-public class MenuIOSPage extends MenuPageBase {
+public class MenuPage extends MenuPageBase {
 
     @ExtendedFindBy(iosPredicate = "name='test-LOGOUT'")
     private ExtendedWebElement logoutButton;
 
-    public MenuIOSPage(WebDriver driver) {
+    public MenuPage(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
         setUiLoadedMarker(logoutButton);

@@ -9,7 +9,7 @@ import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.WebDriver;
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = LoginSwagPageBase.class)
-public class LoginSwagIOSPage extends LoginSwagPageBase {
+public class LoginSwagPage extends LoginSwagPageBase {
 
     @ExtendedFindBy(iosPredicate = "name='test-Username'")
     private ExtendedWebElement userNameInput;
@@ -23,7 +23,7 @@ public class LoginSwagIOSPage extends LoginSwagPageBase {
     @ExtendedFindBy(iosPredicate = "name='Username and password do not match any user in this service.'")
     private ExtendedWebElement loginErrorPrompt;
 
-    public LoginSwagIOSPage(WebDriver driver) {
+    public LoginSwagPage(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
         setUiLoadedMarker(loginButton);

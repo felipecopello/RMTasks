@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = WelcomePageBase.class)
-public class WelcomeIOSPage extends WelcomePageBase {
+public class WelcomePage extends WelcomePageBase {
 
     @ExtendedFindBy(iosPredicate = "name='test-Cart'")
     private ExtendedWebElement cartButton;
@@ -25,7 +25,7 @@ public class WelcomeIOSPage extends WelcomePageBase {
     @FindBy(xpath = "//XCUIElementTypeOther[@name='test-ADD TO CART'][%d])")
     private ExtendedWebElement addToCartButton;
 
-    public WelcomeIOSPage(WebDriver driver) {
+    public WelcomePage(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
         setUiLoadedMarker(addToCartButton);
