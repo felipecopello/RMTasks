@@ -49,7 +49,7 @@ public class Task2Tests implements IAbstractTest, IMobileUtils {
         WelcomePageBase welcomePage = loginSwagPage.login("standard_user", "secret_sauce");
         Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page is not opened");
         CartPageBase cartPage = welcomePage.clickAddToCartButton(new Random().nextInt(5) + 1);
-        Assert.assertTrue(cartPage.isPageOpened(), "Welcome page is not opened");
+        Assert.assertTrue(cartPage.isPageOpened(), "Cart page is not opened");
         Assert.assertTrue(welcomePage.isOneItemTagPresent(), "Item is not added to tag");
         cartPage.removeItemFromCart(1);
         Assert.assertFalse(cartPage.isRemoveItemFromCartPresent(), "Item is still present in the cart");
@@ -65,6 +65,6 @@ public class Task2Tests implements IAbstractTest, IMobileUtils {
         Assert.assertTrue(menuPage.isPageOpened(), "Menu page is not opened");
         Assert.assertTrue(menuPage.isLogoutButtonPresent(), "Menu page is not opened");
         menuPage.clickLogoutButton();
-        Assert.assertTrue(loginSwagPage.isPassWordInputPresent(), "Login page is not opened");
+        Assert.assertTrue(loginSwagPage.isPassWordInputPresent(), "Login swag page is not opened");
     }
 }
