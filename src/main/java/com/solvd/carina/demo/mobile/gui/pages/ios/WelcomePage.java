@@ -22,7 +22,7 @@ public class WelcomePage extends WelcomePageBase {
     @ExtendedFindBy(iosPredicate = "name='test-Menu'")
     private ExtendedWebElement menuButton;
 
-    @FindBy(xpath = "//XCUIElementTypeOther[@name='test-ADD TO CART'][%d])")
+    @ExtendedFindBy(iosPredicate = "name='test-ADD TO CART'[%d]")
     private ExtendedWebElement addToCartButton;
 
     public WelcomePage(WebDriver driver) {

@@ -10,7 +10,7 @@ import org.openqa.selenium.WebDriver;
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = CartPageBase.class)
 public class CartPage extends CartPageBase {
 
-    @ExtendedFindBy(iosPredicate = "name='REMOVE'")
+    @ExtendedFindBy(iosPredicate = "name='REMOVE'[%d]")
     private ExtendedWebElement removeButton;
 
     public CartPage(WebDriver driver) {
@@ -19,9 +19,8 @@ public class CartPage extends CartPageBase {
         setUiLoadedMarker(removeButton);
     }
 
-    @Override
-    public boolean isRemoveItemFromCartPresent() {
-        return removeButton.isElementPresent();
+    public boolean isRemoveButtonPresent(int orderInList) {
+        return removeButton.format(orderInList).isElementPresent();
     }
 
     @Override

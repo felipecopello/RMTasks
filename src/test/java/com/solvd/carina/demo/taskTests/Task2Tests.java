@@ -52,7 +52,7 @@ public class Task2Tests implements IAbstractTest, IMobileUtils {
         Assert.assertTrue(cartPage.isPageOpened(), "Cart page is not opened");
         Assert.assertTrue(welcomePage.isOneItemTagPresent(), "Item is not added to tag");
         cartPage.removeItemFromCart(1);
-        Assert.assertFalse(cartPage.isRemoveItemFromCartPresent(), "Item is still present in the cart");
+        Assert.assertFalse(cartPage.isRemoveButtonPresent(1), "Item is still present in the cart");
     }
 
     @Test

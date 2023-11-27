@@ -11,5 +11,5 @@ public abstract class CartPageBase extends AbstractPage {
 
     public abstract void removeItemFromCart(int orderInList);
 
-    public abstract boolean isRemoveItemFromCartPresent();
+    public abstract boolean isRemoveButtonPresent(int orderInList);
 }
