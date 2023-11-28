@@ -15,9 +15,6 @@ public class WelcomePage extends WelcomePageBase {
     @ExtendedFindBy(iosPredicate = "name='test-Cart'")
     private ExtendedWebElement cartButton;
 
-    @ExtendedFindBy(iosPredicate = "name='1'")
-    private ExtendedWebElement oneItemTag;
-
     @ExtendedFindBy(iosPredicate = "name='test-Menu'")
     private ExtendedWebElement menuButton;
 
