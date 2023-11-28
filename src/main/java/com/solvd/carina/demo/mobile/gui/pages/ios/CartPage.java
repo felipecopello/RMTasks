@@ -7,24 +7,33 @@ import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.WebDriver;
 
+import java.util.List;
+
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = CartPageBase.class)
 public class CartPage extends CartPageBase {
 
-    @ExtendedFindBy(iosPredicate = "name='REMOVE'[%d]")
-    private ExtendedWebElement removeButton;
+    @ExtendedFindBy(iosPredicate = "name='REMOVE'")
+    private List<ExtendedWebElement> removeButtonList;
+
+    @ExtendedFindBy(iosPredicate = "name == 'YOUR CART'")
+    private ExtendedWebElement yourCartTag;
+
+    @ExtendedFindBy(iosPredicate = "name == 'test-Cart'")
+    private ExtendedWebElement cartButton;
 
     public CartPage(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
-        setUiLoadedMarker(removeButton);
-    }
-
-    public boolean isRemoveButtonPresent(int orderInList) {
-        return removeButton.format(orderInList).isElementPresent();
+        setUiLoadedMarker(yourCartTag);
     }
 
     @Override
-    public void removeItemFromCart(int orderInList) {
-        removeButton.format(orderInList).click();
+    public boolean isCartEmpty() {
+        return cartButton.isElementPresent();
+    }
+
+    @Override
+    public void clickRemoveItemButton(int orderInList) {
+        removeButtonList.get(orderInList).click();
     }
 }

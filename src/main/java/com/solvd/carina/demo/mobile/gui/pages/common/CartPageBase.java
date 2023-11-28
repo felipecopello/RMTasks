@@ -9,7 +9,7 @@ public abstract class CartPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract void removeItemFromCart(int orderInList);
+    public abstract void clickRemoveItemButton(int orderInList);
 
-    public abstract boolean isRemoveButtonPresent(int orderInList);
+    public abstract boolean isCartEmpty();
 }

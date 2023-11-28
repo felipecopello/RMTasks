@@ -10,8 +10,6 @@ public abstract class LoginSwagPageBase extends AbstractPage {
 
     public abstract WelcomePageBase login(String username, String password);
 
-    public abstract void loginRandomCredentials(String randomUsername, String randomPass);
-
     public abstract boolean isLoginErrorPromptPresent();
 
     public abstract boolean isPassWordInputPresent();

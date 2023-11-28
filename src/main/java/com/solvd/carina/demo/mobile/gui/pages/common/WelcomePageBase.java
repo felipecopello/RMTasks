@@ -13,5 +13,5 @@ public abstract class WelcomePageBase extends AbstractPage {
 
     public abstract MenuPageBase clickMenuButton();
 
-    public abstract boolean isOneItemTagPresent();
+    public abstract boolean isCartEmpty();
 }

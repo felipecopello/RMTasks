@@ -46,11 +46,4 @@ public class LoginSwagPage extends LoginSwagPageBase {
         loginButton.click();
         return initPage(getDriver(), WelcomePageBase.class);
     }
-
-    @Override
-    public void loginRandomCredentials(String randomUsername, String randomPass) {
-        userNameInput.type(randomUsername);
-        passWordInput.type(randomPass);
-        loginButton.click();
-    }
 }

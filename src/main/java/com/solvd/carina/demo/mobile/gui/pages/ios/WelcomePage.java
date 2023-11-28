@@ -8,7 +8,6 @@ import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = WelcomePageBase.class)
 public class WelcomePage extends WelcomePageBase {
@@ -25,6 +24,7 @@ public class WelcomePage extends WelcomePageBase {
     @ExtendedFindBy(iosPredicate = "name='test-ADD TO CART'[%d]")
     private ExtendedWebElement addToCartButton;
 
+
     public WelcomePage(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
@@ -32,8 +32,8 @@ public class WelcomePage extends WelcomePageBase {
     }
 
     @Override
-    public boolean isOneItemTagPresent() {
-        return oneItemTag.isElementPresent();
+    public boolean isCartEmpty() {
+        return cartButton.isElementPresent();
     }
 
     @Override
