@@ -12,4 +12,6 @@ public abstract class CartPageBase extends AbstractPage {
     public abstract void clickRemoveItemButton(int orderInList);
 
     public abstract boolean isCartEmpty();
+
+    public abstract boolean isItemInCart(String itemName);
 }

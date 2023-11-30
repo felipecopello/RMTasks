@@ -11,26 +11,29 @@ import org.testng.annotations.Test;
 import java.util.Random;
 
 public class CartTests implements IAbstractTest, IMobileUtils {
+
     @Test
     public void addItemToCartHappyPathTest() {
-        LoginSwagPageBase loginSwagPage = initPage(getDriver(), LoginSwagPageBase.class);
+        LoginSwagPageBase loginSwagPage = initPage(LoginSwagPageBase.class);
         Assert.assertTrue(loginSwagPage.isPageOpened(), "Login swag page is not opened");
         WelcomePageBase welcomePage = loginSwagPage.login("standard_user", "secret_sauce");
         Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page is not opened");
         welcomePage.clickAddToCartButton(new Random().nextInt(5) + 1);
-        Assert.assertTrue(welcomePage.isCartEmpty(), "Item is not added to cart");
+        Assert.assertFalse(welcomePage.isCartEmpty(), "Item is not added to cart");
     }
 
     @Test
     public void removeItemFromCartHappyPathTest() {
-        LoginSwagPageBase loginSwagPage = initPage(getDriver(), LoginSwagPageBase.class);
+        LoginSwagPageBase loginSwagPage = initPage(LoginSwagPageBase.class);
         Assert.assertTrue(loginSwagPage.isPageOpened(), "Login swag page is not opened");
         WelcomePageBase welcomePage = loginSwagPage.login("standard_user", "secret_sauce");
         Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page is not opened");
         CartPageBase cartPage = welcomePage.clickAddToCartButton(new Random().nextInt(5) + 1);
         Assert.assertTrue(cartPage.isPageOpened(), "Cart page is not opened");
         Assert.assertFalse(cartPage.isCartEmpty(), "Item added to cart");
+        Assert.assertTrue(cartPage.isItemInCart("Sauce Labs Backpack"));
         cartPage.clickRemoveItemButton(0);
         Assert.assertTrue(cartPage.isCartEmpty(), "Item is still present in the cart");
+        Assert.assertFalse(cartPage.isItemInCart("Sauce Labs Backpack"));
     }
 }

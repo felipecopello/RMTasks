@@ -14,14 +14,15 @@ public class LoginTests implements IAbstractTest, IMobileUtils {
 
     @Test
     public void userLoginHappyPathTest() {
-        LoginSwagPageBase loginSwagPage = initPage(getDriver(), LoginSwagPageBase.class);
+        LoginSwagPageBase loginSwagPage = initPage(LoginSwagPageBase.class);
         Assert.assertTrue(loginSwagPage.isPageOpened(), "Login swag page is not opened");
         WelcomePageBase welcomePage = loginSwagPage.login("standard_user", "secret_sauce");
         Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page is not opened");
     }
+
     @Test
     public void userAbleToLogoutHappyPathTest() {
-        LoginSwagPageBase loginSwagPage = initPage(getDriver(), LoginSwagPageBase.class);
+        LoginSwagPageBase loginSwagPage = initPage(LoginSwagPageBase.class);
         Assert.assertTrue(loginSwagPage.isPageOpened(), "Login swag page is not opened");
         WelcomePageBase welcomePage = loginSwagPage.login("standard_user", "secret_sauce");
         Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page is not opened");
@@ -34,7 +35,7 @@ public class LoginTests implements IAbstractTest, IMobileUtils {
 
     @Test
     public void userLoginWrongCredentialsFailTest() {
-        LoginSwagPageBase loginSwagPage = initPage(getDriver(), LoginSwagPageBase.class);
+        LoginSwagPageBase loginSwagPage = initPage(LoginSwagPageBase.class);
         Assert.assertTrue(loginSwagPage.isPageOpened(), "Login swag page is not opened");
         loginSwagPage.login(new Faker().lorem().characters(10), new Faker().lorem().characters(10));
         Assert.assertTrue(loginSwagPage.isLoginErrorPromptPresent(), "Login error message is not present");

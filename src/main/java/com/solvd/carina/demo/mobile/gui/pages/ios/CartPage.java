@@ -21,6 +21,9 @@ public class CartPage extends CartPageBase {
     @ExtendedFindBy(iosPredicate = "name == 'test-Cart'")
     private ExtendedWebElement cartButton;
 
+    @ExtendedFindBy(iosPredicate = "name == '%s'")
+    private ExtendedWebElement itemInCart;
+
     public CartPage(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
@@ -35,5 +38,10 @@ public class CartPage extends CartPageBase {
     @Override
     public void clickRemoveItemButton(int orderInList) {
         removeButtonList.get(orderInList).click();
+    }
+
+    @Override
+    public boolean isItemInCart(String itemName) {
+        return itemInCart.format(itemName).isElementPresent();
     }
 }
